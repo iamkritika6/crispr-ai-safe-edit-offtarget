@@ -1,8 +1,0 @@
-Model,Final Train Loss,Final Val Loss,Best Val Loss,Epochs,Time
-RNN,1.3802,1.3993,1.3993,11,1.8 min
-LSTM,1.3820,1.3993,1.3993,11,2.5 min
-GRU,1.1991,1.2537,1.1608,26,5.0 min
-BiLSTM,1.3802,1.3993,1.2094,13,3.1 min
-CNN-only,1.3522,1.3993,1.1625,22,4.0 min
-CNN-BiLSTM,1.2113,1.3414,1.1724,15,3.8 min
-CNN-BiLSTM-Attention,1.3802,1.3993,1.1634,34,7.7 min
