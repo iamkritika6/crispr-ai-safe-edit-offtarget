@@ -84,16 +84,8 @@ write-up.
 - The test set contains only 66 positive examples, so all reported metrics
   carry wide uncertainty and small differences between models should not be
   read as meaningful.
-- The models do not transfer across datasets. The thesis reports a "99.9%
-  performance collapse on cross-dataset GUIDE-seq validation" and concludes
-  that the models "captured patterns present in computational prediction
-  datasets but not the causal mechanisms underlying actual Cas9 cleavage".
-  DeepCRISPR labels off-targets computationally by Bowtie2 alignment, whereas
-  GUIDE-seq detects cleavage experimentally, so the two are not drawn from the
-  same distribution. Two caveats on that figure: the thesis attributes it to
-  Chapter 4 but does not report the underlying evaluation there, so the metric
-  it is measured on is not stated; and no GUIDE-seq script, data or result file
-  is included here, so it cannot be reproduced from this repository.
+- The thesis reports poor cross-dataset generalisation on GUIDE-seq; that
+  evaluation is not reproduced in this repository.
 - The baseline training script that produced
   `results/training_summaries/baseline_training_summary.csv` is not included.
 - All results come from a single dataset (DeepCRISPR HEK293T and K562) and have
