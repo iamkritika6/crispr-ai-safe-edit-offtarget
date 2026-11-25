@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+venv*/
+.venv/
+env/
+
+# Data, models, checkpoints (large / not redistributable)
+data/
+datasets/
+models/
+ckpts/
+DeepCRISPR-master/
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.tar.gz
+
+# 5-channel experiment artefacts
+*5ch*
+
+# Documents and reference papers
+References/
+*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
