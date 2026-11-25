@@ -1,0 +1,12 @@
+BIOLOGICAL ALIGNMENT SCORES
+==================================================
+
+GRU-4ch: 60.0%
+BiLSTM-4ch: 60.0%
+CNN-BiLSTM-4ch: 80.0%
+  ✓ Highly aligned with Cas9 rules
+
+Interpretation:
+Score ≥80%: Model decision-making is biologically grounded
+Score 60-80%: Moderate biological alignment
+Score <60%: Primarily data-driven patterns

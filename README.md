@@ -39,7 +39,7 @@ Run from the repository root, in this order:
 | 4 | `step4c_bilstm_memory_optimized.py`, `step4c_cnn_bilstm_4ch_optimized.py` | Memory-optimised GA runs |
 | 5 | `step5_final_test_optionB.py` | Final test-set evaluation |
 | 6 | `step6_random_search_test.py` | Test-set evaluation of random-search models |
-| 8 | `step8_interpretability_analysis.py`, `step8_enhanced_figures.py` | Integrated gradients, CNN filter analysis (information content), in-silico mutagenesis (seed vs distal, positional sensitivity) |
+| 8 | `step8_interpretability_analysis.py`, `step8_enhanced_figures.py` | Integrated gradients, CNN filter analysis (information content), in-silico mutagenesis (seed vs distal, positional sensitivity), biological alignment scoring |
 | 9 | `step9_performance_final_figures.py` | Performance figures |
 | 11 | `step11_benchmark_comparison.py` | Comparison against values reported in the literature; not a like-for-like benchmark |
 
@@ -72,7 +72,9 @@ once on the held-out test set.
 - `results/training_summaries/` — baseline training/validation loss and runtime
   per architecture (loss curves, not test metrics)
 - `results/interpretability/` — integrated gradients, in-silico mutagenesis
-  (positional sensitivity, mismatch types) and CNN filter analyses
+  (positional sensitivity, mismatch types), CNN filter analyses and
+  `biological_alignment_score.txt` (GRU 60%, BiLSTM 60%, CNN-BiLSTM 80%),
+  all written by `step8_interpretability_analysis.py`
 
 Figures are in `figures/`, numbered in roughly the order they appear in the
 write-up.
@@ -82,9 +84,16 @@ write-up.
 - The test set contains only 66 positive examples, so all reported metrics
   carry wide uncertainty and small differences between models should not be
   read as meaningful.
-- Cross-dataset evaluation on GUIDE-seq data dropped sharply, indicating the
-  models do not transfer well beyond the training distribution. No GUIDE-seq
-  script is included in this repository.
+- The models do not transfer across datasets. The thesis reports a "99.9%
+  performance collapse on cross-dataset GUIDE-seq validation" and concludes
+  that the models "captured patterns present in computational prediction
+  datasets but not the causal mechanisms underlying actual Cas9 cleavage".
+  DeepCRISPR labels off-targets computationally by Bowtie2 alignment, whereas
+  GUIDE-seq detects cleavage experimentally, so the two are not drawn from the
+  same distribution. Two caveats on that figure: the thesis attributes it to
+  Chapter 4 but does not report the underlying evaluation there, so the metric
+  it is measured on is not stated; and no GUIDE-seq script, data or result file
+  is included here, so it cannot be reproduced from this repository.
 - The baseline training script that produced
   `results/training_summaries/baseline_training_summary.csv` is not included.
 - All results come from a single dataset (DeepCRISPR HEK293T and K562) and have
