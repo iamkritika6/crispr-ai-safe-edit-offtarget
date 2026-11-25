@@ -44,8 +44,18 @@ so every result reported below uses the 4-channel encoding.
 
 ## Results
 
-Held-out test set, GA-tuned models
-(`results/test_evaluation/final_test_results_optionB.csv`):
+Two separate test-set evaluations are included. They are not directly
+comparable — they differ in both the hyperparameters and the training
+protocol — so both are reported rather than one being treated as superseding
+the other.
+
+### Final evaluation: GA-tuned models, Option B protocol
+
+Produced by `step5_final_test_optionB.py`
+(`results/test_evaluation/final_test_results_optionB.csv`). Hyperparameters
+come from the genetic-algorithm search; each model is then retrained on the
+combined train+validation set (90% of the data, with an internal 10% split for
+early stopping) and evaluated once on the held-out test set.
 
 | Model | Test AUPRC | Test AUROC |
 | --- | --- | --- |
@@ -53,7 +63,37 @@ Held-out test set, GA-tuned models
 | BiLSTM-4ch | 0.710 | 0.991 |
 | CNN-BiLSTM-4ch | 0.750 | 0.994 |
 
-Further summary tables are in `results/`; the main figures are in `figures/`.
+### Earlier evaluation: pre-GA, train-split only
+
+`results/final_training/test_set_performance.csv`, covering four
+architectures with full classification metrics. These models were trained on
+the training split alone with untuned hyperparameters, before the GA search.
+
+| Model | AUPRC | AUROC | Precision | Recall | F1 |
+| --- | --- | --- | --- | --- | --- |
+| GRU | 0.711 | 0.994 | 0.422 | 0.818 | 0.557 |
+| BiLSTM | 0.386 | 0.981 | 0.476 | 0.303 | 0.370 |
+| CNN-BiLSTM | 0.621 | 0.992 | 0.347 | 0.788 | 0.481 |
+| CNN-BiLSTM-Attention | 0.657 | 0.992 | 0.173 | 0.879 | 0.289 |
+
+BiLSTM is the clearest difference between the two tables (0.386 to 0.710).
+Both the GA-tuned hyperparameters and the extra training data in the Option B
+protocol change between the runs, so this repository does not attribute the
+gain to either on its own.
+
+### Other result files
+
+- `results/random_search/` — random hyperparameter search scores
+- `results/random_search_test/` — test metrics for random-search models, which
+  performed poorly (AUPRC 0.03–0.55) and were not used for the final models
+- `results/true_ga/` — per-generation GA progress and final population
+- `results/training_summaries/` — training/validation loss and runtime per
+  architecture (loss curves, not test metrics)
+- `results/interpretability/` — integrated gradients, in-silico mutagenesis,
+  saliency and CNN filter analyses
+
+Figures are in `figures/`, numbered in roughly the order they appear in the
+write-up.
 
 ## Setup
 
